@@ -1,3 +1,5 @@
+github.com/DenKuzin33/OtusProject/banners_selector v0.0.0-20230930120600-48218901fe22 h1:USBiwdWFxZgYVsgPvZnkhd8nn1ld2yeBWHOvIGcAByw=
+github.com/DenKuzin33/OtusProject/banners_selector v0.0.0-20230930120600-48218901fe22/go.mod h1:rf6/dfLbhTRzd9wEyh76G4YGTOWlszE5BO3hhP6Eeic=
 github.com/cockroachdb/apd v1.1.0 h1:3LFP3629v+1aKXU5Q37mxmRxX/pIu1nijXydLShEq5I=
 github.com/cockroachdb/apd v1.1.0/go.mod h1:8Sl8LxpKi29FqWXR16WEFZRNSz3SoPzUzeMeY4+DwBQ=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=

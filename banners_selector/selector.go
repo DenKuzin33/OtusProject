@@ -1,28 +1,28 @@
-package bannersselector
+package selector
 
 import "math"
 
-type BannerInfo struct {
+type BannerData struct {
 	Id          int
 	ShowsCount  int
 	ClicksCount int
 }
 
-func SelectNext(banners []BannerInfo, commonCount int) int {
+func SelectNext(banners []BannerData, commonCount int) BannerData {
 	var maxValue float64
-	var maxValueBannerId int
+	var maxValueBanner BannerData
 	for _, banner := range banners {
 		if banner.ShowsCount == 0 {
-			return banner.Id
+			return banner
 		}
 
 		bannerValue := (float64(banner.ClicksCount) / float64(banner.ShowsCount)) +
 			math.Sqrt((2*math.Log(float64(commonCount)))/float64(banner.ShowsCount))
 		if bannerValue > maxValue {
 			maxValue = bannerValue
-			maxValueBannerId = banner.Id
+			maxValueBanner = banner
 		}
 	}
 
-	return maxValueBannerId
+	return maxValueBanner
 }

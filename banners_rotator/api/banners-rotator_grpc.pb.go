@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v4.24.3
-// source: slot_banner_pair.proto
+// source: banners-rotator.proto
 
 package api
 
@@ -21,6 +21,8 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	BannersRotator_AddBannerToSlot_FullMethodName      = "/proto.BannersRotator/AddBannerToSlot"
 	BannersRotator_RemoveBannerFromSlot_FullMethodName = "/proto.BannersRotator/RemoveBannerFromSlot"
+	BannersRotator_CountBannerClick_FullMethodName     = "/proto.BannersRotator/CountBannerClick"
+	BannersRotator_SelectBannerForShow_FullMethodName  = "/proto.BannersRotator/SelectBannerForShow"
 )
 
 // BannersRotatorClient is the client API for BannersRotator service.
@@ -29,6 +31,8 @@ const (
 type BannersRotatorClient interface {
 	AddBannerToSlot(ctx context.Context, in *BannerOperationRequest, opts ...grpc.CallOption) (*BannerOperationResponse, error)
 	RemoveBannerFromSlot(ctx context.Context, in *BannerOperationRequest, opts ...grpc.CallOption) (*BannerOperationResponse, error)
+	CountBannerClick(ctx context.Context, in *CountBannerClickRequest, opts ...grpc.CallOption) (*BannerOperationResponse, error)
+	SelectBannerForShow(ctx context.Context, in *SelectBannerForShowRequest, opts ...grpc.CallOption) (*SelectBannerForShowResponse, error)
 }
 
 type bannersRotatorClient struct {
@@ -57,12 +61,32 @@ func (c *bannersRotatorClient) RemoveBannerFromSlot(ctx context.Context, in *Ban
 	return out, nil
 }
 
+func (c *bannersRotatorClient) CountBannerClick(ctx context.Context, in *CountBannerClickRequest, opts ...grpc.CallOption) (*BannerOperationResponse, error) {
+	out := new(BannerOperationResponse)
+	err := c.cc.Invoke(ctx, BannersRotator_CountBannerClick_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bannersRotatorClient) SelectBannerForShow(ctx context.Context, in *SelectBannerForShowRequest, opts ...grpc.CallOption) (*SelectBannerForShowResponse, error) {
+	out := new(SelectBannerForShowResponse)
+	err := c.cc.Invoke(ctx, BannersRotator_SelectBannerForShow_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BannersRotatorServer is the server API for BannersRotator service.
 // All implementations must embed UnimplementedBannersRotatorServer
 // for forward compatibility
 type BannersRotatorServer interface {
 	AddBannerToSlot(context.Context, *BannerOperationRequest) (*BannerOperationResponse, error)
 	RemoveBannerFromSlot(context.Context, *BannerOperationRequest) (*BannerOperationResponse, error)
+	CountBannerClick(context.Context, *CountBannerClickRequest) (*BannerOperationResponse, error)
+	SelectBannerForShow(context.Context, *SelectBannerForShowRequest) (*SelectBannerForShowResponse, error)
 	mustEmbedUnimplementedBannersRotatorServer()
 }
 
@@ -75,6 +99,12 @@ func (UnimplementedBannersRotatorServer) AddBannerToSlot(context.Context, *Banne
 }
 func (UnimplementedBannersRotatorServer) RemoveBannerFromSlot(context.Context, *BannerOperationRequest) (*BannerOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveBannerFromSlot not implemented")
+}
+func (UnimplementedBannersRotatorServer) CountBannerClick(context.Context, *CountBannerClickRequest) (*BannerOperationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountBannerClick not implemented")
+}
+func (UnimplementedBannersRotatorServer) SelectBannerForShow(context.Context, *SelectBannerForShowRequest) (*SelectBannerForShowResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SelectBannerForShow not implemented")
 }
 func (UnimplementedBannersRotatorServer) mustEmbedUnimplementedBannersRotatorServer() {}
 
@@ -125,6 +155,42 @@ func _BannersRotator_RemoveBannerFromSlot_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BannersRotator_CountBannerClick_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CountBannerClickRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BannersRotatorServer).CountBannerClick(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BannersRotator_CountBannerClick_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BannersRotatorServer).CountBannerClick(ctx, req.(*CountBannerClickRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BannersRotator_SelectBannerForShow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SelectBannerForShowRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BannersRotatorServer).SelectBannerForShow(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BannersRotator_SelectBannerForShow_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BannersRotatorServer).SelectBannerForShow(ctx, req.(*SelectBannerForShowRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BannersRotator_ServiceDesc is the grpc.ServiceDesc for BannersRotator service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -140,7 +206,15 @@ var BannersRotator_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "RemoveBannerFromSlot",
 			Handler:    _BannersRotator_RemoveBannerFromSlot_Handler,
 		},
+		{
+			MethodName: "CountBannerClick",
+			Handler:    _BannersRotator_CountBannerClick_Handler,
+		},
+		{
+			MethodName: "SelectBannerForShow",
+			Handler:    _BannersRotator_SelectBannerForShow_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "slot_banner_pair.proto",
+	Metadata: "banners-rotator.proto",
 }

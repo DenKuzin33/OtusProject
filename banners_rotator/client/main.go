@@ -5,12 +5,12 @@ import (
 	"fmt"
 
 	"github.com/DenKuzin33/OtusProject/banners_rotator/api"
-
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
 func main() {
-	conn, err := grpc.Dial(":55011")
+	conn, err := grpc.Dial(":55011", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		fmt.Println(err)
 		return

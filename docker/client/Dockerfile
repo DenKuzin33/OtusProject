@@ -3,10 +3,13 @@ FROM golang:latest as build
 WORKDIR /client
 
 COPY go.mod ./
+COPY go.sum ./
 COPY *.go ./
 
-RUN go build -o /client
+RUN CGO_ENABLED=0 GOOS=linux go build -o /client
 
-EXPOSE 5555
+FROM scratch
 
-ENTRYPOINT [ "/client" ]
+COPY --from=build client .
+
+ENTRYPOINT ["/client"]

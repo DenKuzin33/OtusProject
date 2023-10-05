@@ -13,10 +13,15 @@ CREATE TABLE dem_groups (
     description text
 );
 
+CREATE TABLE slot_banners (
+    slot_id integer,
+    banner_id integer,
+)
+
 CREATE TABLE shows_clicks_count (
     slot_id integer,
     banner_id integer,
-    dem_group_id integer,
-    shows_count integer,
-    click_count integer
+    dem_group_id integer default -1,
+    shows_count integer default 0,
+    click_count integer default 0
 );

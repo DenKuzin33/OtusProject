@@ -1,3 +1,5 @@
+github.com/DenKuzin33/OtusProject/banners_rotator v0.0.0-20230930120600-48218901fe22 h1:4Z39wtSnbkUzw9xvY/5PRF/Vsf6R21TWelBIpuCIduE=
+github.com/DenKuzin33/OtusProject/banners_rotator v0.0.0-20230930120600-48218901fe22/go.mod h1:A1QFQq1mmLzB10Tf9CgauD/wVDWJr9d0yhRhnzBIeyQ=
 github.com/golang/protobuf v1.5.0/go.mod h1:FsONVRAS9T7sI+LIUmWTfcYkHO4aIWwzhcaSAoJOfIk=
 github.com/golang/protobuf v1.5.3 h1:KhyjKVUg7Usr/dYsdSqoFveMYd5ko72D+zANwlG1mmg=
 github.com/golang/protobuf v1.5.3/go.mod h1:XVQd3VNwM+JqD3oG2Ue2ip4fOMUkwXdXDdiuN0vRsmY=

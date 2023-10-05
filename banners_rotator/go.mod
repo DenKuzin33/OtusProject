@@ -3,6 +3,7 @@ module github.com/DenKuzin33/OtusProject/banners_rotator
 go 1.20
 
 require (
+	github.com/DenKuzin33/OtusProject/banners_selector v0.0.0-20230930120600-48218901fe22
 	github.com/jackc/pgx v3.6.2+incompatible
 	github.com/stretchr/testify v1.8.4
 	google.golang.org/grpc v1.58.0

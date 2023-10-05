@@ -1,4 +1,4 @@
-package bannersrotator
+package main
 
 import (
 	"testing"
